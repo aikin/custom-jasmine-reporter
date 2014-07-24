@@ -24,6 +24,8 @@ function configConsoleReporter(jasmineEnv) {
     var ConsoleReporter = jasmineRequire.ConsoleReporter();
     var options = {
         timer: new jasmine.Timer,
+        showColors: true,
+
         print: function () {
             console.log(arguments, 'print');
         },
