@@ -2,8 +2,8 @@
     var jasmineEnv = jasmine.getEnv();
     jasmineEnv.updateInterval = 1000;
 
-    configConsoleReporter();
-//    configCustomConsoleReporter();
+//    configConsoleReporter();
+    configCustomReporter();
 
 })();
 
@@ -24,7 +24,19 @@ function configConsoleReporter() {
     jasmine.getEnv().addReporter(consoleReporter);
 }
 
-function configCustomConsoleReporter() {
-    jasmine.getEnv().addReporter(new jasmineReporters.TapReporter());
+function configCustomReporter() {
+    var CustomReporter = jasmineRequire.CustomReporter();
+    var options = {
+        timer: new jasmine.Timer,
+
+        onSpecDone: function () {
+            console.log(arguments[0], 'print');
+        },
+        onComplete: function () {
+            console.log(arguments, 'complete')
+        }
+    };
+    var customReporter = new CustomReporter(options);
+    jasmine.getEnv().addReporter(customReporter);
 }
 
