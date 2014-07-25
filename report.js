@@ -1,26 +1,11 @@
 (function () {
     var jasmineEnv = jasmine.getEnv();
     jasmineEnv.updateInterval = 1000;
-
-    configConsoleReporter(jasmineEnv);
-    configHtmlReporter(jasmineEnv);
-
-    var currentWindowOnload = window.onload;
-
-    window.onload = function () {
-        if (currentWindowOnload) {
-            currentWindowOnload();
-        }
-        execJasmine();
-    };
-
-    function execJasmine() {
-        jasmineEnv.execute();
-    }
+    configConsoleReporter();
 
 })();
 
-function configConsoleReporter(jasmineEnv) {
+function configConsoleReporter() {
     var ConsoleReporter = jasmineRequire.ConsoleReporter();
     var options = {
         timer: new jasmine.Timer,
@@ -34,13 +19,5 @@ function configConsoleReporter(jasmineEnv) {
         }
     };
     var consoleReporter = new ConsoleReporter(options);
-    jasmineEnv.addReporter(consoleReporter);
-}
-
-function configHtmlReporter(jasmineEnv) {
-    var htmlReporter = new jasmine.HtmlReporter();
-    jasmineEnv.addReporter(htmlReporter);
-    jasmineEnv.specFilter = function(spec) {
-        return htmlReporter.specFilter(spec);
-    };
+    jasmine.getEnv().addReporter(consoleReporter);
 }
