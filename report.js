@@ -2,8 +2,8 @@
     var jasmineEnv = jasmine.getEnv();
     jasmineEnv.updateInterval = 1000;
 
-//    configConsoleReporter();
-    configCustomConsoleReporter();
+    configConsoleReporter();
+//    configCustomConsoleReporter();
 
 })();
 
