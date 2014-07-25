@@ -29,8 +29,13 @@ function configCustomReporter() {
     var options = {
         timer: new jasmine.Timer,
 
-        onSpecDone: function () {
-            console.log(arguments[0], 'print');
+        onSpecDone: function (result) {
+            console.log(result, 'print');
+            if (!result.isPassed) {
+                document.getElementById('num').innerHTML      = '测试 ' + result.num + ' 失败';
+                document.getElementById('describe').innerHTML = 'describe: ' + result.describe;
+                document.getElementById('it').innerHTML       = '\n it: ' + result.it;
+            }
         },
         onComplete: function () {
             console.log(arguments, 'complete')
