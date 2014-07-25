@@ -1,7 +1,6 @@
 (function() {
 
     window.jasmine = jasmineRequire.core(jasmineRequire);
-    jasmineRequire.html(jasmine);
 
     var env = jasmine.getEnv();
 
@@ -65,23 +64,8 @@
         return env.clock;
     };
 
-
-    var queryString = new jasmine.QueryString({
-        getWindowLocation: function() { return window.location; }
-    });
-
-    var catchingExceptions = queryString.getParam("catch");
-    env.catchExceptions(typeof catchingExceptions === "undefined" ? true : catchingExceptions);
-
     env.addReporter(jasmineInterface.jsApiReporter);
 
-    var specFilter = new jasmine.HtmlSpecFilter({
-        filterString: function() { return queryString.getParam("spec"); }
-    });
-
-    env.specFilter = function(spec) {
-        return specFilter.matches(spec.getFullName());
-    };
 
     window.setTimeout = window.setTimeout;
     window.setInterval = window.setInterval;
