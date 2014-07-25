@@ -2,9 +2,8 @@
     var jasmineEnv = jasmine.getEnv();
     jasmineEnv.updateInterval = 1000;
 
-    configConsoleReporter();
-//    configCustomConsoleReporter();
-//    configHtmlReporter();
+//    configConsoleReporter();
+    configCustomConsoleReporter();
 
 })();
 
@@ -29,10 +28,3 @@ function configCustomConsoleReporter() {
     jasmine.getEnv().addReporter(new jasmineReporters.TapReporter());
 }
 
-function configHtmlReporter() {
-    var htmlReporter = new jasmine.HtmlReporter();
-    jasmine.getEnv().addReporter.addReporter(htmlReporter);
-    jasmine.getEnv().addReporter.specFilter = function(spec) {
-        return htmlReporter.specFilter(spec);
-    };
-}
