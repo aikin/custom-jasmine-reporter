@@ -1,4 +1,5 @@
 (function(global) {
+
     var UNDEFINED,
         exportObject;
 
