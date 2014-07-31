@@ -1,13 +1,3 @@
-require.config({
-    paths: {
-        allSpecSuccessSrc: '../src/allSpecSuccess'
-    }
-});
-
-require(['allSpecSuccessSrc'], function () {
-    //executeSpec();
-});
-
 describe("A suite of basic functions", function () {
     var name;
 
