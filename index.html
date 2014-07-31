@@ -3,25 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>jasmine test</title>
-    <!--<link rel="stylesheet" type="text/css" href="bower_components/jasmine/lib/jasmine-core/jasmine.css">-->
-    <script type="text/javascript" src="bower_components/jasmine/lib/jasmine-core/jasmine.js"></script>
-    <!--<script type="text/javascript" src="bower_components/jasmine/lib/jasmine-core/jasmine-html.js"></script>-->
-    <!--<script type="text/javascript" src="bower_components/jasmine/lib/console/console.js"></script>-->
-    <!--<script type="text/javascript" src="bower_components/jasmine/lib/jasmine-core/boot/boot.js"></script>-->
-    <script type="text/javascript" src="custom/custom_boot.js"></script>
-    <script type="text/javascript" src="custom/custom_reporter.js"></script>
 </head>
 <body>
 <h1>jasmine demo</h1>
-<script type="text/javascript" src="report.js"></script>
-<script type="text/javascript" src="src/allSpecSuccess.js"></script>
-<script type="text/javascript" src="spec/allSpecSuccess.js"></script>
-<script type="text/javascript" src="src/someSpecFail.js"></script>
-<script type="text/javascript" src="spec/someSpecFail.js"></script>
 <div>
     <p id="num"></p>
+
     <p id="describe"></p>
+
     <p id="it"></p>
 </div>
+<script type="text/javascript" src="bower_components/requirejs/require.js" data-main="custom/main"></script>
 </body>
 </html>

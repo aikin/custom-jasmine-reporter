@@ -18,13 +18,15 @@ getJasmineRequireObj().CustomReporter = function () {
     };
 
     function CustomReporter(options) {
-        var onSpecDone = options.onSpecDone,
+        var onSpecDone = options.onSpecDone || function () {
+            },
             onComplete = options.onComplete || function () {
             },
             timer = options.timer || noopTimer,
             currentSuite,
             specCount,
             failureCount,
+            failedSpecs = [],
             pendingCount;
 
         this.jasmineStarted = function () {
@@ -43,15 +45,16 @@ getJasmineRequireObj().CustomReporter = function () {
         };
 
         this.specDone = function (spec) {
-            var result = {};
+            var specResult = {};
+            specResult.isPassed = isPassed(spec);
+            specResult.num = specCount;
+            specResult.it = spec.description;
+            specResult.describe = currentSuite.description;
             if (isFailed(spec)) {
                 failureCount++;
+                failedSpecs.push(specResult);
             }
-            result.isPassed = isPassed(spec);
-            result.num = specCount;
-            result.it = spec.description;
-            result.describe = currentSuite.description;
-            onSpecDone(result);
+            onSpecDone(specResult);
         };
 
         this.suiteDone = function () {
@@ -59,7 +62,8 @@ getJasmineRequireObj().CustomReporter = function () {
         };
 
         this.jasmineDone = function () {
-            onComplete(failureCount === 0);
+            var result = {isPassed: failureCount === 0, failedSpecs: failedSpecs};
+            onComplete(result);
         };
 
         function isPassed(spec) {
@@ -79,3 +83,19 @@ getJasmineRequireObj().CustomReporter = function () {
 
     return CustomReporter;
 };
+
+(function () {
+    var CustomReporter = jasmineRequire.CustomReporter();
+    var options = {
+        timer: new jasmine.Timer,
+
+        onSpecDone: function (specResult) {
+            console.log(specResult, 'on spec done');
+        },
+        onComplete: function (result) {
+            console.log(result, 'on complete');
+        }
+    };
+    var customReporter = new CustomReporter(options);
+    jasmine.getEnv().addReporter(customReporter);
+})();

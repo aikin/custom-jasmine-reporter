@@ -66,14 +66,6 @@
 
     env.addReporter(jasmineInterface.jsApiReporter);
 
-    var currentWindowOnload = window.onload;
-
-    window.onload = function() {
-        if (currentWindowOnload) {
-            currentWindowOnload();
-        }
-        env.execute();
-    };
 
     function extend(destination, source) {
         for (var property in source) destination[property] = source[property];

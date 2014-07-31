@@ -3,5 +3,5 @@ function sumOfTwoNumber(a, b) {
 }
 
 function calculateTwoNumberPoor(minuend ,subtractor) {
-    return minuend - subtractor;
+    return minuend + subtractor;
 }

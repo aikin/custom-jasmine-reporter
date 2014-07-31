@@ -2,7 +2,7 @@ describe("A suite of calculate functions", function () {
 
 
     it("sum two number", function () {
-        expect(6).toEqual(sumOfTwoNumber(1, 4));
+        expect(6).toEqual(sumOfTwoNumber(2, 4));
     });
 
     it("poor of two number", function () {
